@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register - Digital Twin</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="watermark"></div>
+  <div class="hal-watermark"></div>
+  <header class="header">
+    <img src="assets/hal_logo.png" class="logo" alt="HAL Logo">
+    <h1>Digital Twin for Aircraft Engine</h1>
+  </header>
+
+  <main class="main">
+    <section class="card login-card">
+      <h2>Create Account</h2>
+      <label>Username</label>
+      <input id="username" type="text" placeholder="Enter your username" required>
+      <label>Email Address</label>
+      <input id="email" type="email" placeholder="your@email.com" required>
+      <label>Password</label>
+      <input id="password" type="password" placeholder="Enter your password" required>
+
+      <label>Confirm Password</label>
+      <input id="confirm_password" type="password" placeholder="Re-enter your password" required>
+      <button id="registerBtn">Register</button>
+      <p>Already have an account? <a href="login.html">Sign in here</a></p>
+      <div id="msg"></div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

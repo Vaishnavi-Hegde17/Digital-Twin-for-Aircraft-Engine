@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Digital Twin</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="watermark"></div>
+  <header class="header">
+    <img src="assets/hal_logo.png" class="logo" alt="HAL Logo">
+    <h1>Digital Twin for Aircraft Engine</h1>
+  </header>
+
+  <div class="sidebar">
+    <a href="home.html">🏠 Home</a>
+    <a href="dashboard.html">📊 Dashboard</a>
+    <a href="prediction.html">🔮 Prediction</a>
+    <a href="#" id="logoutLink">🚪 Logout</a>
+  </div>
+
+  <main class="content-area">
+    <section style="width:100%; max-width:1200px;">
+      <h2 style="margin-top:0;">Real-time Dashboard</h2>
+      <p>Live sensor data stream with ML predictions. Charts update every 5 seconds.</p>
+      <div id="alert" style="margin-bottom:12px;"></div>
+
+      <div class="dashboard-grid" style="display:grid; grid-template-columns: repeat(3, 1fr); gap:20px; margin-top:18px;">
+        <div class="card">
+          <h3>RPM</h3>
+          <canvas id="rpmChart" height="120"></canvas>
+        </div>
+
+        <div class="card">
+          <h3>EGT</h3>
+          <canvas id="egtChart" height="120"></canvas>
+        </div>
+
+        <div class="card">
+          <h3>Fuel Flow</h3>
+          <canvas id="fuelChart" height="120"></canvas>
+        </div>
+
+        <div class="card">
+          <h3>Vibration</h3>
+          <canvas id="vibChart" height="120"></canvas>
+        </div>
+
+        <div class="card">
+          <h3>Oil Temp</h3>
+          <canvas id="oilChart" height="120"></canvas>
+        </div>
+
+        <div class="card">
+          <h3>Oil Pressure</h3>
+          <canvas id="oilPChart" height="120"></canvas>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

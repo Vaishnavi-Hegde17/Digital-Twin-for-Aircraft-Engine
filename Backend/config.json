@@ -1,0 +1,17 @@
+{
+  "SECRET_KEY": "change_this_secret",
+  "SMTP": {
+    "HOST": "smtp.example.com",
+    "PORT": 587,
+    "USER": "your@domain.com",
+    "PASSWORD": "yourpassword",
+    "USE_TLS": true
+  },
+  "MODEL": {
+    "type": "rf",
+    "rf_path": "savedmodels/rf_engine_health_model.pkl",
+    "scaler_path": "savedmodels/scaler.pkl",
+    "label_encoder_path": "savedmodels/label_encoder.pkl",
+    "features_path": "savedmodels/model_features.pkl"
+  }
+}

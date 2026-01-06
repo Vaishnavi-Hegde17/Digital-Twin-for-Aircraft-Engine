@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home - Digital Twin</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="watermark"></div>
+  <header class="header">
+    <img src="assets/hal_logo.png" class="logo" alt="HAL Logo">
+    <h1>Digital Twin for Aircraft Engine</h1>
+  </header>
+
+  <div class="sidebar">
+    <a href="home.html">🏠 Home</a>
+    <a href="dashboard.html">📊 Dashboard</a>
+    <a href="prediction.html">🔮 Prediction</a>
+    <a href="#" id="logoutLink">🚪 Logout</a>
+  </div>
+
+  <main class="content-area">
+    <section style="width:100%; max-width:1400px;">
+      <div style="display:grid; grid-template-columns: 1fr; gap:24px;">
+        <div class="card">
+          <h3 style="margin-top:0;">Engine Overview</h3>
+          <img src="assets/adour_engine.jpg" class="engine-img" alt="HAL Adour Engine" style="max-width:500px; width:100%;">
+          <p style="margin-top:8px; color:#374151;">Model: <strong>Adour Mk-821</strong><br>A turbofan engine used in various military aircraft platforms.</p>
+        </div>
+
+        <div class="card">
+          <h2 style="margin-top:0;">About this Digital Twin</h2>
+          <p>This Digital Twin replicates the HAL Adour turbofan engine behaviour using physics-inspired synthetic data and machine learning. It supports:</p>
+          <ul style="color:#374151;">
+            <li>Real-time sensor streaming and visualization</li>
+            <li>Health classification: <strong>NORMAL / WARNING / CRITICAL</strong></li>
+            <li>Predictive maintenance using RandomForest, XGBoost, and Neural Network models</li>
+            <li>Email alerts on detected anomalies</li>
+          </ul>
+
+          <h3>Engine Sensors & Normal Operating Ranges</h3>
+          <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 16px;">
+            <div style="padding: 12px; background: #f0f9ff; border-left: 4px solid #1d4ed8; border-radius: 4px;">
+              <strong style="color: #1d4ed8;">RPM (Revolutions per Minute)</strong>
+              <p style="margin: 6px 0; color: #374151;">Normal Range: <strong>2,000 - 8,500 RPM</strong><br>Critical if above 9,000 or below 1,500</p>
+            </div>
+            <div style="padding: 12px; background: #fff7ed; border-left: 4px solid #e67e22; border-radius: 4px;">
+              <strong style="color: #e67e22;">EGT - Exhaust Gas Temperature</strong>
+              <p style="margin: 6px 0; color: #374151;">Normal Range: <strong>500°C - 800°C</strong><br>Critical if above 850°C or below 400°C</p>
+            </div>
+            <div style="padding: 12px; background: #f0fdf4; border-left: 4px solid #059669; border-radius: 4px;">
+              <strong style="color: #059669;">Fuel Flow</strong>
+              <p style="margin: 6px 0; color: #374151;">Normal Range: <strong>1,500 - 4,500 kg/h</strong><br>Critical if above 5,000 or below 1,000 kg/h</p>
+            </div>
+            <div style="padding: 12px; background: #fdf2f8; border-left: 4px solid #8b5cf6; border-radius: 4px;">
+              <strong style="color: #8b5cf6;">Vibration</strong>
+              <p style="margin: 6px 0; color: #374151;">Normal Range: <strong>0 - 5.0 mm/s</strong><br>Critical if above 8.0 mm/s</p>
+            </div>
+            <div style="padding: 12px; background: #fff5f3; border-left: 4px solid #f97316; border-radius: 4px;">
+              <strong style="color: #f97316;">Oil Temperature</strong>
+              <p style="margin: 6px 0; color: #374151;">Normal Range: <strong>60°C - 110°C</strong><br>Critical if above 120°C or below 50°C</p>
+            </div>
+            <div style="padding: 12px; background: #ecf8ff; border-left: 4px solid #06b6d4; border-radius: 4px;">
+              <strong style="color: #06b6d4;">Oil Pressure</strong>
+              <p style="margin: 6px 0; color: #374151;">Normal Range: <strong>3.0 - 7.0 bar</strong><br>Critical if above 8.0 or below 2.5 bar</p>
+            </div>
+          </div>
+
+          <h3 style="margin-top: 24px;">How to use</h3>
+          <ol style="color:#374151;">
+            <li>Register &amp; login via the left sidebar menu</li>
+            <li>Open <strong>Dashboard</strong> to view live telemetry with real-time data streams</li>
+            <li>Use <strong>Prediction</strong> page to test custom input scenarios and get health predictions</li>
+            <li>Monitor sensor values against normal ranges to identify anomalies</li>
+          </ol>
+
+          <h3>Model Notes</h3>
+          <p style="color:#374151;">Models are trained on realistic synthetic dataset and saved under <code>Backend/savedmodels</code>. Live predictions use the RandomForest model by default; you can configure models in <code>Backend/config.json</code>.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
