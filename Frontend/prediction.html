@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Prediction - Digital Twin</title>
   <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 </head>
 <body>
   <div class="watermark"></div>
@@ -14,10 +15,10 @@
   </header>
 
   <div class="sidebar">
-    <a href="home.html">🏠 Home</a>
-    <a href="dashboard.html">📊 Dashboard</a>
-    <a href="prediction.html">🔮 Prediction</a>
-    <a href="#" id="logoutLink">🚪 Logout</a>
+    <a href="home.html"> Home</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="prediction.html"> Prediction</a>
+    <a href="#" id="logoutLink">Logout</a>
   </div>
 
   <main class="content-area">
@@ -25,40 +26,61 @@
       <h2>Engine Health Prediction</h2>
       <p>Enter sensor parameters to predict engine health status with probability scores.</p>
       
-      <label>Flight Phase</label>
-      <select id="Phase">
+      <div class="form-grid">
+        <div>
+          <label>Flight Phase</label>
+          <select id="Phase">
         <option value="IDLE">IDLE</option>
         <option value="TAKEOFF">TAKEOFF</option>
         <option value="CRUISE" selected>CRUISE</option>
         <option value="DESCENT">DESCENT</option>
       </select>
-      
-      <label>Throttle (0.0 - 1.0)</label>
-      <input id="Throttle" type="number" step="0.01" min="0" max="1" value="0.7" required>
-      
-      <label>RPM (rotations/min)</label>
-      <input id="RPM" type="number" step="0.1" value="3000" required>
-      
-      <label>Fuel Flow (lb/hr)</label>
-      <input id="FuelFlow" type="number" step="0.1" value="500" required>
-      
-      <label>EGT - Exhaust Gas Temperature (°C)</label>
-      <input id="EGT" type="number" step="0.1" value="600" required>
-      
-      <label>Oil Temperature (°C)</label>
-      <input id="OilTemp" type="number" step="0.1" value="60" required>
-      
-      <label>Oil Pressure (PSI)</label>
-      <input id="OilPressure" type="number" step="0.1" value="55" required>
-      
-      <label>Vibration (mm/s)</label>
-      <input id="Vibration" type="number" step="0.01" value="1.2" required>
-      
-      <button id="predictBtn">Predict Health Status</button>
+        </div>
+
+        <div>
+          <label>Throttle (0.0 - 1.0)</label>
+          <input id="Throttle" type="number" step="0.01" min="0" max="1" value="0.7" required>
+
+          <label>RPM (rotations/min)</label>
+          <input id="RPM" type="number" step="0.1" value="3000" required>
+
+          <label>Fuel Flow (lb/hr)</label>
+          <input id="FuelFlow" type="number" step="0.1" value="500" required>
+        </div>
+
+        <div>
+          <label>EGT - Exhaust Gas Temperature (°C)</label>
+          <input id="EGT" type="number" step="0.1" value="600" required>
+
+          <label>Oil Temperature (°C)</label>
+          <input id="OilTemp" type="number" step="0.1" value="60" required>
+        </div>
+
+        <div>
+          <label>Oil Pressure (PSI)</label>
+          <input id="OilPressure" type="number" step="0.1" value="55" required>
+
+          <label>Vibration (mm/s)</label>
+          <input id="Vibration" type="number" step="0.01" value="1.2" required>
+        </div>
+
+      </div>
+
+      <div style="display:flex; gap:12px; align-items:center; margin-top:12px;">
+        <button id="predictBtn">Predict Health Status</button>
+        <button id="downloadReportBtn" style="display:none; margin-left:auto;">Download Report (PDF)</button>
+      </div>
       <div id="predictionResult"></div>
+      <div id="rangeVizContainer" style="margin-top:18px; display:none;">
+        <h3>Parameter vs Normal Range</h3>
+        <canvas id="paramChart" style="width:100%; max-width:780px; height:320px;"></canvas>
+      </div>
     </section>
   </main>
 
+  <!-- report libs -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

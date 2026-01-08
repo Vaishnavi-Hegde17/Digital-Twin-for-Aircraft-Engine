@@ -2,6 +2,7 @@ import os
 import json
 import pandas as pd
 from flask import Flask, request, jsonify, session
+from flask import send_from_directory
 from flask_cors import CORS
 from werkzeug.security import generate_password_hash, check_password_hash
 from utils import generate_sample
@@ -16,6 +17,18 @@ CONFIG_FILE = os.path.join(BASE_DIR, "config.json")
 
 app = Flask(__name__)
 CORS(app, supports_credentials=True)
+
+# Serve frontend files from the sibling Frontend folder so pages run on same origin
+FRONTEND_DIR = os.path.abspath(os.path.join(BASE_DIR, os.pardir, 'Frontend'))
+
+@app.route('/', defaults={'path': 'login.html'})
+@app.route('/<path:path>')
+def serve_frontend(path):
+    target = os.path.join(FRONTEND_DIR, path)
+    if os.path.exists(target) and os.path.isfile(target):
+        return send_from_directory(FRONTEND_DIR, path)
+    # fallback to login page for unknown paths (SPAs)
+    return send_from_directory(FRONTEND_DIR, 'login.html')
 
 # Load config or create default
 if os.path.exists(CONFIG_FILE):
@@ -43,6 +56,9 @@ else:
         json.dump(config, f, indent=2)
 
 app.secret_key = config.get("SECRET_KEY", os.urandom(24))
+
+# Allow anonymous predictions for local/dev testing when enabled in config
+ALLOW_ANON_PREDICT = config.get("ALLOW_ANON_PREDICT", False)
 
 # Load model and preprocessors if available
 MODEL = None
@@ -134,6 +150,16 @@ def login_required(fn):
 
     @wraps(fn)
     def wrapper(*args, **kwargs):
+        # allow anonymous access to predict endpoints when enabled in config
+        try:
+            from flask import request
+            path = request.path
+        except Exception:
+            path = None
+
+        if ALLOW_ANON_PREDICT and path in ("/predict", "/sensor/latest"):
+            return fn(*args, **kwargs)
+
         if "user" not in session:
             return jsonify({"error": "unauthorized"}), 401
         return fn(*args, **kwargs)

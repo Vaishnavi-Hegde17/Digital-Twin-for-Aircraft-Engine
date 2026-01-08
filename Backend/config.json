@@ -1,10 +1,10 @@
 {
   "SECRET_KEY": "change_this_secret",
   "SMTP": {
-    "HOST": "smtp.example.com",
+    "HOST": "smtp.gmail.com",
     "PORT": 587,
-    "USER": "your@domain.com",
-    "PASSWORD": "yourpassword",
+    "USER": "vaishnavihegde546@gmail.com",
+    "PASSWORD": "vaishnavi@2002",
     "USE_TLS": true
   },
   "MODEL": {
