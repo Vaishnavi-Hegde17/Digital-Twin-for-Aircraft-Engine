@@ -3,8 +3,8 @@
   "SMTP": {
     "HOST": "smtp.gmail.com",
     "PORT": 587,
-    "USER": "vaishnavihegde546@gmail.com",
-    "PASSWORD": "vaishnavi@2002",
+    "USER": "",
+    "PASSWORD": "",
     "USE_TLS": true
   },
   "MODEL": {
